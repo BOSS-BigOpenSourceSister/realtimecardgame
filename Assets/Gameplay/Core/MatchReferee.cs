@@ -4,6 +4,8 @@ using Gameplay.Core.Actions;
 using Gameplay.Core.Cards;
 using UnityEngine;
 
+
+
 namespace Gameplay.Core
 {
     public class MatchReferee : MonoBehaviour
@@ -13,11 +15,15 @@ namespace Gameplay.Core
         GameActionsQueue ActionsQueue { get; } = new GameActionsQueue();
 
         List<IPlayer> Players { get; set; }
+   
+       [SerializeField] RandomTimeSpawner EnimySpawn;
 
         public void Setup(GameActionFactory gameActionFactory, IEnumerable<IPlayer> players)
         {
+            
             GameActionFactory = gameActionFactory;
             Players = players.ToList();
+       
         }
 
         public void OnPlayerUsedCard(CardType card, Team team, int laneIdx)

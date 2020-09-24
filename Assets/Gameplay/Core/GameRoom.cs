@@ -3,6 +3,7 @@ using Gameplay.Core.Actions;
 using Gameplay.Core.Cards;
 using UnityEngine;
 
+
 namespace Gameplay.Core
 {
     public class GameRoom : MonoBehaviour
@@ -13,6 +14,8 @@ namespace Gameplay.Core
         [SerializeField] GameplayHUD gameplayHUD;
         [SerializeField] GameObject playerPrefab;
         [SerializeField] GestureRecognizer gestureRecognizer;
+             
+      
 
         IPlayer HomePlayer { get; set; }
 

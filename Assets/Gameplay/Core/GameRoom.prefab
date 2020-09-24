@@ -53,6 +53,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8810095783483634559}
   - component: {fileID: 3240000761415635626}
+  - component: {fileID: 7882861631766685898}
   m_Layer: 0
   m_Name: GameRoom
   m_TagString: Untagged
@@ -95,6 +96,19 @@ MonoBehaviour:
   gameplayHUD: {fileID: 0}
   playerPrefab: {fileID: 8935196672504659087, guid: 0640b6363a77e42e5a8a357501a6bbfa,
     type: 3}
+  gestureRecognizer: {fileID: 0}
+--- !u!114 &7882861631766685898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8810095783483634558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffb205cd657754e20b8f937779b811b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &938094247219466833
 PrefabInstance:
   m_ObjectHideFlags: 0
