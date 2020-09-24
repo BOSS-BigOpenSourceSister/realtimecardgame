@@ -3,6 +3,8 @@ using System.Linq;
 using Gameplay.Core.Actions;
 using Gameplay.Core.Cards;
 using UnityEngine;
+using Gameplay.Behaviours.Interfaces;
+
 
 namespace Gameplay.Core
 {
@@ -14,10 +16,16 @@ namespace Gameplay.Core
 
         List<IPlayer> Players { get; set; }
 
-        public void Setup(GameActionFactory gameActionFactory, IEnumerable<IPlayer> players)
+        void OnCastleDied(IDamageable damageable)
+        {
+            damageable.OnHealthChanged -= OnHealthChanged;
+            damageable.OnDie -= OnDamageableDied;
+        }
+        public void Setup(GameActionFactory gameActionFactory, IEnumerable<IPlayer> players, IDamageable Castle)
         {
             GameActionFactory = gameActionFactory;
             Players = players.ToList();
+            Castle.OnDie += OnCastleDied;
         }
 
         public void OnPlayerUsedCard(CardType card, Team team, int laneIdx)
