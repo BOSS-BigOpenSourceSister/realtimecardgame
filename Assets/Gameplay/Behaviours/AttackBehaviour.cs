@@ -25,6 +25,44 @@ namespace Gameplay.Behaviours
 
         float _attackTimer = 0;
 
+        public float distanceSplashDamage = 3;
+        private List<IDamageable> getEnemies()
+        {
+            var myTeam = Entity.Team;
+            var enemyTeam = "";
+
+            switch (myTeam)
+            {
+                case Team.Home:
+                    enemyTeam = "Visitor";
+                    break;
+                case Team.Visitor:
+                    enemyTeam = "Home";
+                    break;
+                default:
+                    break;
+            }
+
+            var enemies = GameObject.FindGameObjectsWithTag(enemyTeam);
+
+            var damageables = new List<IDamageable>();
+
+            foreach (var enemy in enemies)
+            {
+                if (Vector3.Distance(transform.position, enemy.transform.position) <= distanceSplashDamage)
+                {
+                    var damageable = enemy.GetComponent<IDamageable>();
+                    if (damageable != null)
+                    {
+                        damageables.Add(damageable);
+                    }
+                }
+
+            }
+            return damageables;
+
+        }
+
         protected override void Awake()
         {
             base.Awake();
@@ -70,8 +108,14 @@ namespace Gameplay.Behaviours
         void Attack()
         {
             Assert.IsTrue(HasValidTarget, message: "Attack should only be called with a valid target");
-            CurrentTarget.ScheduleDamage(damage);
-            _attackers.ForEach(action: attacker => attacker.Attack(CurrentTarget));
+            // CurrentTarget.ScheduleDamage(damage);
+            var enemies = getEnemies();
+            foreach (var enemy in enemies)
+            {
+                enemy.ScheduleDamage(damage);
+
+            }
+            // _attackers.ForEach(action: attacker => attacker.Attack(CurrentTarget));
         }
 
         void ChooseTarget()
