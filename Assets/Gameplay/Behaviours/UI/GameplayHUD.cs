@@ -116,6 +116,7 @@ namespace Gameplay.Behaviours.UI
 
         void OnInputEnded(Vector2 startPosition, Vector2 position, float deltaTime)
         {
+            Debug.Log("Teste >> OnInputEnded");
             var selectedCard = _selectedCard;
             _selectedCard = null;
 

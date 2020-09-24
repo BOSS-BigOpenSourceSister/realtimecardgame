@@ -20,10 +20,22 @@ namespace Gameplay.Core
             Players = players.ToList();
         }
 
-        public void OnPlayerUsedCard(CardType card, Team team, int laneIdx)
+        public void OnPlayerUsedCard(CardType card, Team team, int laneIdx, int count)
         {
-            var deployCardAction = GameActionFactory.CreateDeployCardAction(card, team, laneIdx);
-            ActionsQueue.ScheduleAction(deployCardAction);
+            Debug.Log("Teste >> MatchReferee.OnPlayerUsedCard()");
+
+            IGameAction cardAction = null;
+
+            if (count > 1)
+            {
+                cardAction = GameActionFactory.CreateMultiDeployCardAction(card, team, laneIdx, count);
+            }
+            else
+            {
+                cardAction = GameActionFactory.CreateDeployCardAction(card, team, laneIdx);
+            }
+
+            ActionsQueue.ScheduleAction(cardAction);
         }
 
         void Update() => ActionsQueue.Execute();

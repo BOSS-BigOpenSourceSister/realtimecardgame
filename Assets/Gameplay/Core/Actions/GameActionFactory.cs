@@ -23,6 +23,18 @@ namespace Gameplay.Core.Actions
             });
         }
 
+        public MultiDeployCardAction CreateMultiDeployCardAction(CardType cardType, Team team, int laneIdx, int count)
+        {
+            return CreateGameAction<MultiDeployCardAction, MultiDeployCardActionData>(new MultiDeployCardActionData
+            {
+                Deployer = Deployer,
+                CardType = cardType,
+                Team = team,
+                LaneIdx = laneIdx,
+                Count = count,
+            });
+        }
+
         T CreateGameAction<T, U>(U data) where T : GameAction<U>, new()
         {
             var gameAction = new T();

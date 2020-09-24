@@ -59,7 +59,7 @@ namespace Gameplay.Core
 
         void OnHomePlayerUsedCard(CardType card, int laneIdx)
         {
-            matchReferee.OnPlayerUsedCard(card, HomePlayer.Team, laneIdx);
+            matchReferee.OnPlayerUsedCard(card, HomePlayer.Team, laneIdx, 3);
             Dealer.DealCard(HomePlayer);
         }
     }
