@@ -18,14 +18,15 @@ namespace Gameplay.Core
 
         void OnCastleDied(IDamageable damageable)
         {
-            damageable.OnHealthChanged -= OnHealthChanged;
-            damageable.OnDie -= OnDamageableDied;
+            Debug.Log("PARTIDA ACABOU");
+            damageable.OnDie -= OnCastleDied;
         }
-        public void Setup(GameActionFactory gameActionFactory, IEnumerable<IPlayer> players, IDamageable Castle)
+        
+        public void Setup(GameActionFactory gameActionFactory, IEnumerable<IPlayer> players, IDamageable castle)
         {
             GameActionFactory = gameActionFactory;
             Players = players.ToList();
-            Castle.OnDie += OnCastleDied;
+            castle.OnDie += OnCastleDied;
         }
 
         public void OnPlayerUsedCard(CardType card, Team team, int laneIdx)

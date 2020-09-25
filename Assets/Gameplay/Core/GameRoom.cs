@@ -2,6 +2,10 @@
 using Gameplay.Core.Actions;
 using Gameplay.Core.Cards;
 using UnityEngine;
+using Gameplay.Behaviours.Interfaces;
+using Gameplay.Behaviours;
+
+
 
 namespace Gameplay.Core
 {
@@ -13,6 +17,11 @@ namespace Gameplay.Core
         [SerializeField] GameplayHUD gameplayHUD;
         [SerializeField] GameObject playerPrefab;
         [SerializeField] GestureRecognizer gestureRecognizer;
+
+        [SerializeField] DamageableBehaviour castleBlue;
+        [SerializeField] DamageableBehaviour castleRed;
+
+
 
         IPlayer HomePlayer { get; set; }
 
@@ -38,7 +47,7 @@ namespace Gameplay.Core
             Dealer.DealInitialCards(HomePlayer);
             Dealer.DealInitialCards(VisitorPlayer);
 
-            matchReferee.Setup(gameActionFactory, players: new []{HomePlayer, VisitorPlayer});
+            matchReferee.Setup(gameActionFactory, players: new []{HomePlayer, VisitorPlayer}, castleRed);
         }
 
         void Awake() => AddObservers();
