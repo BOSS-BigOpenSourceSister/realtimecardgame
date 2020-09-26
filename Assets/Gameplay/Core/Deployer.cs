@@ -1,4 +1,5 @@
-﻿using Gameplay.Behaviours.Interfaces;
+﻿using Gameplay.Behaviours;
+using Gameplay.Behaviours.Interfaces;
 using Gameplay.Behaviours.UI;
 using Gameplay.Core.Cards;
 using UnityEngine.Assertions;
@@ -23,9 +24,17 @@ namespace Gameplay.Core
         public Entity DeployCard(CardType cardType, Team team, int laneIdx)
         {
             var card = GameObjectFactory.CreateCard(cardType, team);
-
+            
             var lane = Arena.Lanes[laneIdx];
             lane.AddEntity(card, team);
+
+            var behaviour = card.GetComponent<MultiDeployBehaviour>();
+
+            for (var i = 0; i < behaviour.count - 1; i++)
+            {
+                var tempCard = GameObjectFactory.CreateCard(cardType, team);
+                lane.AddEntity(tempCard, team);
+            }
 
             var damageable = card.GetComponent<IDamageable>();
             if (damageable != null)
