@@ -24,6 +24,7 @@ namespace Gameplay.Behaviours
         bool HasValidTarget => CurrentTarget != null;
 
         float _attackTimer = 0;
+        public bool isAreaAttack = false;
 
         public float distanceSplashDamage = 3;
         private List<IDamageable> getEnemies()
@@ -100,7 +101,11 @@ namespace Gameplay.Behaviours
             _attackTimer += Time.deltaTime;
             if (_attackTimer > CooldownInSeconds)
             {
-                Attack();
+                if(isAreaAttack){
+                    AreaAttack();
+                } else {
+                    Attack();
+                }
                 _attackTimer = 0f;
             }
         }
@@ -108,16 +113,18 @@ namespace Gameplay.Behaviours
         void Attack()
         {
             Assert.IsTrue(HasValidTarget, message: "Attack should only be called with a valid target");
-            // CurrentTarget.ScheduleDamage(damage);
+            CurrentTarget.ScheduleDamage(damage);
+            _attackers.ForEach(action: attacker => attacker.Attack(CurrentTarget));
+        }
+
+        void AreaAttack() {
             var enemies = getEnemies();
             foreach (var enemy in enemies)
             {
                 enemy.ScheduleDamage(damage);
 
             }
-            // _attackers.ForEach(action: attacker => attacker.Attack(CurrentTarget));
         }
-
         void ChooseTarget()
         {
             if (HasValidTarget)

@@ -39,6 +39,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  isAreaAttack: 0
+  distanceSplashDamage: 3
 --- !u!114 &3727817751875911478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,7 +54,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2557682290527837661}
-  healthBarBehaviour: {fileID: 0}
 --- !u!114 &5610767750448019250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +191,7 @@ PrefabInstance:
     - target: {fileID: 1613250389873929681, guid: 6b09c1ea1d4e30d4280224b592e9dcc6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2.68
       objectReference: {fileID: 0}
     - target: {fileID: 1613250389873929681, guid: 6b09c1ea1d4e30d4280224b592e9dcc6,
         type: 3}
