@@ -2,7 +2,6 @@
 {
     public enum CardType
     {
-        Warrior,
-        MultiWarrior
+        Warrior
     }
 }
