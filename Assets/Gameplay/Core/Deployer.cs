@@ -28,18 +28,24 @@ namespace Gameplay.Core
             var lane = Arena.Lanes[laneIdx];
             lane.AddEntity(card, team);
 
+            var damageable = card.GetComponent<IDamageable>();
+            
+            if (damageable != null)
+            {
+                GameplayHUD.CreateHealthBar(damageable, team, card.transform);
+            }
+
             var behaviour = card.GetComponent<MultiDeployBehaviour>();
 
             for (var i = 0; i < behaviour.count - 1; i++)
             {
-                var tempCard = GameObjectFactory.CreateCard(cardType, team);
-                lane.AddEntity(tempCard, team);
-            }
-
-            var damageable = card.GetComponent<IDamageable>();
-            if (damageable != null)
-            {
-                GameplayHUD.CreateHealthBar(damageable, team, card.transform);
+                var additionalCard = GameObjectFactory.CreateCard(cardType, team);
+                lane.AddEntity(additionalCard, team);
+                
+                if (damageable != null)
+                {
+                    GameplayHUD.CreateHealthBar(damageable, team, additionalCard.transform);
+                }
             }
 
             return card;
