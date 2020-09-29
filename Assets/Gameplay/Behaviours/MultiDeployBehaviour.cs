@@ -4,6 +4,8 @@ namespace Gameplay.Behaviours
 {
     public class MultiDeployBehaviour : BaseBehaviour
     {
-        public int count = 1;
+        [SerializeField] int count = 1;
+
+        public int Count => count;
     }
 }
