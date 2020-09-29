@@ -24,32 +24,36 @@ namespace Gameplay.Core
         public Entity DeployCard(CardType cardType, Team team, int laneIdx)
         {
             var card = GameObjectFactory.CreateCard(cardType, team);
-            
+
             var lane = Arena.Lanes[laneIdx];
-            lane.AddEntity(card, team);
 
             var damageable = card.GetComponent<IDamageable>();
-            
-            if (damageable != null)
+
+            AddCard(card, lane, team, damageable);
+
+            var multiDeployBehaviour = card.GetComponent<MultiDeployBehaviour>();
+
+            if (multiDeployBehaviour != null)
             {
-                GameplayHUD.CreateHealthBar(damageable, team, card.transform);
-            }
-
-            var behaviour = card.GetComponent<MultiDeployBehaviour>();
-
-
-            for (var i = 0; i < behaviour.Count - 1; i++)
-            {
-                var additionalCard = GameObjectFactory.CreateCard(cardType, team);
-                lane.AddEntity(additionalCard, team);
-                
-                if (damageable != null)
+                for (var i = 0; i < multiDeployBehaviour.AdditionalDeployCount - 1; i++)
                 {
-                    GameplayHUD.CreateHealthBar(damageable, team, additionalCard.transform);
+                    var additionalCard = GameObjectFactory.CreateCard(cardType, team);
+
+                    AddCard(additionalCard, lane, team, damageable);
                 }
             }
 
             return card;
+        }
+
+        private void AddCard(Entity card, Lane lane, Team team, IDamageable damageable)
+        {
+            lane.AddEntity(card, team);
+
+            if (damageable != null)
+            {
+                GameplayHUD.CreateHealthBar(damageable, team, card.transform);
+            }
         }
     }
 }
