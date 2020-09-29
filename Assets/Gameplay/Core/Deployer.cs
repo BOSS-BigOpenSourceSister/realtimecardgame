@@ -37,7 +37,8 @@ namespace Gameplay.Core
 
             var behaviour = card.GetComponent<MultiDeployBehaviour>();
 
-            for (var i = 0; i < behaviour.count - 1; i++)
+
+            for (var i = 0; i < behaviour.Count - 1; i++)
             {
                 var additionalCard = GameObjectFactory.CreateCard(cardType, team);
                 lane.AddEntity(additionalCard, team);
