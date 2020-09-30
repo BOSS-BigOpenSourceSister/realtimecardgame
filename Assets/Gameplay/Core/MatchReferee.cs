@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System;
 using Gameplay.Core.Actions;
 using Gameplay.Core.Cards;
 using UnityEngine;
+using Gameplay.Behaviours.Interfaces;
+
 
 namespace Gameplay.Core
 {
@@ -14,10 +17,21 @@ namespace Gameplay.Core
 
         List<IPlayer> Players { get; set; }
 
-        public void Setup(GameActionFactory gameActionFactory, IEnumerable<IPlayer> players)
+        void OnCastleDied(IDamageable damageable)
+        {
+            Debug.Log("A PARTIDA ACABOU!");
+            damageable.OnDie -= OnCastleDied;
+            OnGameOver?.Invoke();
+        }
+
+        public event Action OnGameOver;
+        
+        public void Setup(GameActionFactory gameActionFactory, IEnumerable<IPlayer> players, IDamageable castleBlue, IDamageable castleRed)
         {
             GameActionFactory = gameActionFactory;
             Players = players.ToList();
+            castleBlue.OnDie += OnCastleDied;
+            castleRed.OnDie += OnCastleDied;
         }
 
         public void OnPlayerUsedCard(CardType card, Team team, int laneIdx)

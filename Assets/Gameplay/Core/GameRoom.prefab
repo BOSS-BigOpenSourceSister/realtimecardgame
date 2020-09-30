@@ -95,6 +95,9 @@ MonoBehaviour:
   gameplayHUD: {fileID: 0}
   playerPrefab: {fileID: 8935196672504659087, guid: 0640b6363a77e42e5a8a357501a6bbfa,
     type: 3}
+  gestureRecognizer: {fileID: 0}
+  castleBlue: {fileID: 6176869837638663006}
+  castleRed: {fileID: 5096887625949155598}
 --- !u!1001 &938094247219466833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -521,5 +524,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8adb35d9887fe4d7d84dcaaa543e392c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6176869837638663006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6394093166116235535, guid: 8bf704dac44664f47a5b78a39944cf34,
+    type: 3}
+  m_PrefabInstance: {fileID: 938094247219466833}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b64ed076b5074e7488cff9ec2afc984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5096887625949155598 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5458098822491276127, guid: 8bf704dac44664f47a5b78a39944cf34,
+    type: 3}
+  m_PrefabInstance: {fileID: 938094247219466833}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b64ed076b5074e7488cff9ec2afc984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

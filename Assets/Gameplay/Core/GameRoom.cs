@@ -2,6 +2,10 @@
 using Gameplay.Core.Actions;
 using Gameplay.Core.Cards;
 using UnityEngine;
+using Gameplay.Behaviours.Interfaces;
+using Gameplay.Behaviours;
+using UnityEngine.SceneManagement;
+
 
 namespace Gameplay.Core
 {
@@ -13,6 +17,11 @@ namespace Gameplay.Core
         [SerializeField] GameplayHUD gameplayHUD;
         [SerializeField] GameObject playerPrefab;
         [SerializeField] GestureRecognizer gestureRecognizer;
+
+        [SerializeField] DamageableBehaviour castleBlue;
+        [SerializeField] DamageableBehaviour castleRed;
+
+
 
         IPlayer HomePlayer { get; set; }
 
@@ -38,7 +47,7 @@ namespace Gameplay.Core
             Dealer.DealInitialCards(HomePlayer);
             Dealer.DealInitialCards(VisitorPlayer);
 
-            matchReferee.Setup(gameActionFactory, players: new []{HomePlayer, VisitorPlayer});
+            matchReferee.Setup(gameActionFactory, players: new []{HomePlayer, VisitorPlayer}, castleBlue, castleRed);
         }
 
         void Awake() => AddObservers();
@@ -49,14 +58,20 @@ namespace Gameplay.Core
         {
             Dealer.OnDealtCard += gameplayHUD.OnCardDealt;
             gameplayHUD.OnUseCard += OnHomePlayerUsedCard;
+            matchReferee.OnGameOver += GameOver;
         }
 
         void RemoveObservers()
         {
             Dealer.OnDealtCard -= gameplayHUD.OnCardDealt;
             gameplayHUD.OnUseCard -= OnHomePlayerUsedCard;
+            matchReferee.OnGameOver -= GameOver;
         }
-
+        void GameOver()
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
         void OnHomePlayerUsedCard(CardType card, int laneIdx)
         {
             matchReferee.OnPlayerUsedCard(card, HomePlayer.Team, laneIdx);
