@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefabDict:
-    m_keys: 00000000
+    m_keys: 0000000001000000
     m_values:
     - {fileID: 3274150517216157666, guid: 77cd19d9dee0340bc973086d5d3a567c, type: 3}
+    - {fileID: 3615646017921554434, guid: 2087384702dcd44b39e1a49f38502dc3, type: 3}

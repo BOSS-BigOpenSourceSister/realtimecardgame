@@ -24,6 +24,45 @@ namespace Gameplay.Behaviours
         bool HasValidTarget => CurrentTarget != null;
 
         float _attackTimer = 0;
+        public bool isAreaAttack = false;
+
+        public float distanceSplashDamage = 3;
+        private List<IDamageable> getEnemies()
+        {
+            var myTeam = Entity.Team;
+            var enemyTeam = "";
+
+            switch (myTeam)
+            {
+                case Team.Home:
+                    enemyTeam = "Visitor";
+                    break;
+                case Team.Visitor:
+                    enemyTeam = "Home";
+                    break;
+                default:
+                    break;
+            }
+
+            var enemies = GameObject.FindGameObjectsWithTag(enemyTeam);
+
+            var damageables = new List<IDamageable>();
+
+            foreach (var enemy in enemies)
+            {
+                if (Vector3.Distance(transform.position, enemy.transform.position) <= distanceSplashDamage)
+                {
+                    var damageable = enemy.GetComponent<IDamageable>();
+                    if (damageable != null)
+                    {
+                        damageables.Add(damageable);
+                    }
+                }
+
+            }
+            return damageables;
+
+        }
 
         protected override void Awake()
         {
@@ -62,7 +101,11 @@ namespace Gameplay.Behaviours
             _attackTimer += Time.deltaTime;
             if (_attackTimer > CooldownInSeconds)
             {
-                Attack();
+                if(isAreaAttack){
+                    AreaAttack();
+                } else {
+                    Attack();
+                }
                 _attackTimer = 0f;
             }
         }
@@ -74,6 +117,14 @@ namespace Gameplay.Behaviours
             _attackers.ForEach(action: attacker => attacker.Attack(CurrentTarget));
         }
 
+        void AreaAttack() {
+            var enemies = getEnemies();
+            foreach (var enemy in enemies)
+            {
+                enemy.ScheduleDamage(damage);
+
+            }
+        }
         void ChooseTarget()
         {
             if (HasValidTarget)

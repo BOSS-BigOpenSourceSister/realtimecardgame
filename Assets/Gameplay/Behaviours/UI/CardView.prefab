@@ -67,9 +67,10 @@ MonoBehaviour:
   rect: {fileID: 1234890418332635619}
   imageCard: {fileID: 7843744602157141522}
   cardSprites:
-    m_keys: 00000000
+    m_keys: 0000000001000000
     m_values:
     - {fileID: 21300000, guid: 9b7223aa726eb41ee9f4349249340e9b, type: 3}
+    - {fileID: 21300000, guid: 23ebed2390aa23d4f863a4ea731c3197, type: 3}
 --- !u!114 &8570471700893772512
 MonoBehaviour:
   m_ObjectHideFlags: 0
