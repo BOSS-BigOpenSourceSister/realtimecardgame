@@ -1,4 +1,5 @@
-﻿using Gameplay.Behaviours.Interfaces;
+﻿using Gameplay.Behaviours;
+using Gameplay.Behaviours.Interfaces;
 using Gameplay.Behaviours.UI;
 using Gameplay.Core.Cards;
 using UnityEngine.Assertions;
@@ -25,15 +26,34 @@ namespace Gameplay.Core
             var card = GameObjectFactory.CreateCard(cardType, team);
 
             var lane = Arena.Lanes[laneIdx];
-            lane.AddEntity(card, team);
 
             var damageable = card.GetComponent<IDamageable>();
+
+            AddCard(card, lane, team, damageable);
+
+            var multiDeployBehaviour = card.GetComponent<MultiDeployBehaviour>();
+
+            if (multiDeployBehaviour != null)
+            {
+                for (var i = 0; i < multiDeployBehaviour.AdditionalDeployCount - 1; i++)
+                {
+                    var additionalCard = GameObjectFactory.CreateCard(cardType, team);
+
+                    AddCard(additionalCard, lane, team, damageable);
+                }
+            }
+
+            return card;
+        }
+
+        private void AddCard(Entity card, Lane lane, Team team, IDamageable damageable)
+        {
+            lane.AddEntity(card, team);
+
             if (damageable != null)
             {
                 GameplayHUD.CreateHealthBar(damageable, team, card.transform);
             }
-
-            return card;
         }
     }
 }
