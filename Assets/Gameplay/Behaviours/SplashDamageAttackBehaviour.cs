@@ -49,7 +49,7 @@ namespace Gameplay.Behaviours
             }
         }
 
-        protected void Attack()
+        void Attack()
         {
             Debug.Log("Ta no splash");
             var enemies = getEnemies();

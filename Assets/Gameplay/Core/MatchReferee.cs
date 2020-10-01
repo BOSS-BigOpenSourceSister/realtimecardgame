@@ -17,10 +17,6 @@ namespace Gameplay.Core
         public void Setup(GameActionFactory gameActionFactory, IEnumerable<IPlayer> players)
         {
             GameActionFactory = gameActionFactory;
-            OnPlayerUsedCard(CardType.Warrior, Team.Visitor, 0);
-            OnPlayerUsedCard(CardType.Warrior, Team.Visitor, 0);
-            OnPlayerUsedCard(CardType.Warrior, Team.Visitor, 0);
-            OnPlayerUsedCard(CardType.Warrior, Team.Visitor, 0);
             Players = players.ToList();
         }
 

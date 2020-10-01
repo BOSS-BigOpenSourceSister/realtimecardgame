@@ -2,7 +2,7 @@
 
 ## Implementar o script de ataque
 
-Implemente uma função para a nova forma de ataque no script de `AttackBehaviour.cs` (em Assets/Gameplay/Behaviours), e adicione uma forma desse ataque ser selecionado, ou crie seu próprio script de ataque.
+Crie uma classe implementando o novo ataque, a classe pode herdar de `AttackBehaviour` (em Assets/Gameplay/Behaviours).
 
 ## Criar um prefab do novo personagem
 
