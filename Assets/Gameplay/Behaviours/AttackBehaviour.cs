@@ -11,7 +11,7 @@ namespace Gameplay.Behaviours
     {
         [SerializeField] int damage = 10;
 
-        const int CooldownInSeconds = 1;
+        protected const int CooldownInSeconds = 1;
 
         List<IAttacker> _attackers;
 
@@ -21,48 +21,9 @@ namespace Gameplay.Behaviours
 
         public bool IsAttacking => HasValidTarget;
 
-        bool HasValidTarget => CurrentTarget != null;
+        protected bool HasValidTarget => CurrentTarget != null;
 
-        float _attackTimer = 0;
-        public bool isAreaAttack = false;
-
-        public float distanceSplashDamage = 3;
-        private List<IDamageable> getEnemies()
-        {
-            var myTeam = Entity.Team;
-            var enemyTeam = "";
-
-            switch (myTeam)
-            {
-                case Team.Home:
-                    enemyTeam = "Visitor";
-                    break;
-                case Team.Visitor:
-                    enemyTeam = "Home";
-                    break;
-                default:
-                    break;
-            }
-
-            var enemies = GameObject.FindGameObjectsWithTag(enemyTeam);
-
-            var damageables = new List<IDamageable>();
-
-            foreach (var enemy in enemies)
-            {
-                if (Vector3.Distance(transform.position, enemy.transform.position) <= distanceSplashDamage)
-                {
-                    var damageable = enemy.GetComponent<IDamageable>();
-                    if (damageable != null)
-                    {
-                        damageables.Add(damageable);
-                    }
-                }
-
-            }
-            return damageables;
-
-        }
+        protected float _attackTimer = 0;
 
         protected override void Awake()
         {
@@ -101,30 +62,20 @@ namespace Gameplay.Behaviours
             _attackTimer += Time.deltaTime;
             if (_attackTimer > CooldownInSeconds)
             {
-                if(isAreaAttack){
-                    AreaAttack();
-                } else {
-                    Attack();
-                }
+
+                Attack();
                 _attackTimer = 0f;
             }
         }
 
         void Attack()
         {
+            Debug.Log("Ta no default");
             Assert.IsTrue(HasValidTarget, message: "Attack should only be called with a valid target");
             CurrentTarget.ScheduleDamage(damage);
             _attackers.ForEach(action: attacker => attacker.Attack(CurrentTarget));
         }
 
-        void AreaAttack() {
-            var enemies = getEnemies();
-            foreach (var enemy in enemies)
-            {
-                enemy.ScheduleDamage(damage);
-
-            }
-        }
         void ChooseTarget()
         {
             if (HasValidTarget)

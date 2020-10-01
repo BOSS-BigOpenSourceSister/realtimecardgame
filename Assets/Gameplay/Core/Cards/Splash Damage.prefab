@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2490348344280382261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3615646017921554434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e45e10c0784477cbb730c9da525b03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  isAreaAttack: 0
+  distanceSplashDamage: 3
+  distanceSplashDamage: 3
+  damage: 10
 --- !u!114 &4703723925404330486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +93,11 @@ PrefabInstance:
       propertyPath: isAreaAttack
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3629147935950381519, guid: 77cd19d9dee0340bc973086d5d3a567c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3727817751875911478, guid: 77cd19d9dee0340bc973086d5d3a567c,
         type: 3}
       propertyPath: animator
@@ -146,8 +168,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3629147935950381519, guid: 77cd19d9dee0340bc973086d5d3a567c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 77cd19d9dee0340bc973086d5d3a567c, type: 3}
+--- !u!1 &3615646017921554434 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3274150517216157666, guid: 77cd19d9dee0340bc973086d5d3a567c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2260037809061595104}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5738664981078185400 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5836261650095805016, guid: 77cd19d9dee0340bc973086d5d3a567c,
