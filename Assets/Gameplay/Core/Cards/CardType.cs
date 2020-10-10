@@ -3,6 +3,7 @@
     public enum CardType
     {
         Warrior,
-        SplashDamage
+        SplashDamage,
+        KnockBack
     }
 }

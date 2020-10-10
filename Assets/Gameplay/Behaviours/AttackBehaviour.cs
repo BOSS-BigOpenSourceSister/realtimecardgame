@@ -9,15 +9,15 @@ namespace Gameplay.Behaviours
 {
     public class AttackBehaviour : BaseBehaviour
     {
-        [SerializeField] int damage = 10;
+        [SerializeField] protected int damage = 10;
 
         protected const int CooldownInSeconds = 1;
 
-        List<IAttacker> _attackers;
+        protected List<IAttacker> _attackers;
 
-        ColliderBehaviour _collider;
+        protected ColliderBehaviour _collider;
 
-        IDamageable CurrentTarget { get; set; }
+        protected IDamageable CurrentTarget { get; set; }
 
         public bool IsAttacking => HasValidTarget;
 
@@ -70,7 +70,6 @@ namespace Gameplay.Behaviours
 
         void Attack()
         {
-            Debug.Log("Ta no default");
             Assert.IsTrue(HasValidTarget, message: "Attack should only be called with a valid target");
             CurrentTarget.ScheduleDamage(damage);
             _attackers.ForEach(action: attacker => attacker.Attack(CurrentTarget));
@@ -93,7 +92,7 @@ namespace Gameplay.Behaviours
                     SetTarget(damageable);
                     return;
                 }
-            }            
+            }
         }
 
         void SetTarget(IDamageable damageable)

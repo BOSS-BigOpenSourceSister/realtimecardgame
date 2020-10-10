@@ -8,7 +8,7 @@ namespace Gameplay.Core
 {
     public class PlayerDeck
     {
-        public const int DeckSize = 8;
+        public const int DeckSize = 9;
 
         LinkedList<CardType> Cards { get; set; } = new LinkedList<CardType>();
 
@@ -51,6 +51,7 @@ namespace Gameplay.Core
             {
                 cards.Add(CardType.Warrior);
                 cards.Add(CardType.SplashDamage);
+                cards.Add(CardType.KnockBack);
             }
             return new PlayerDeck(cards);
         }
