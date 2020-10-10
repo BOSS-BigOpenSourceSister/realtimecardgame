@@ -44,6 +44,7 @@ Assets/Data/Metagame/Items/Editor/*.csv.meta
 # Visual Studio cache directory
 .vs/
 .history
+.vscode/
 
 # Gradle cache directory
 .gradle/

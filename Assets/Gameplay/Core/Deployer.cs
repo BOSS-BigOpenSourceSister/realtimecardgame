@@ -4,6 +4,8 @@ using Gameplay.Behaviours.UI;
 using Gameplay.Core.Cards;
 using UnityEngine.Assertions;
 
+using UnityEngine;
+
 namespace Gameplay.Core
 {
     public class Deployer
@@ -32,6 +34,7 @@ namespace Gameplay.Core
             AddCard(card, lane, team, damageable);
 
             var multiDeployBehaviour = card.GetComponent<MultiDeployBehaviour>();
+            var manaBehaviour = card.GetComponent<ManaBehaviour>();
 
             if (multiDeployBehaviour != null)
             {
@@ -41,6 +44,11 @@ namespace Gameplay.Core
 
                     AddCard(additionalCard, lane, team, damageable);
                 }
+            }
+
+            if (manaBehaviour != null)
+            {
+                Debug.Log(manaBehaviour.CardManaValue);
             }
 
             return card;
