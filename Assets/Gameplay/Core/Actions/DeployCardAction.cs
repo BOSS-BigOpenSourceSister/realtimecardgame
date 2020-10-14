@@ -12,7 +12,7 @@ namespace Gameplay.Core.Actions
         public override void Execute()
         {
             var deployer = Data.Deployer;
-            deployer.DeployCard(Data.CardType, Data.Team, Data.LaneIdx);
+            deployer.DeployCard(Data.CardType, Data.Team, Data.LaneIdx, Data.Player);
         }
     }
 
@@ -25,5 +25,7 @@ namespace Gameplay.Core.Actions
         public Team Team;
 
         public int LaneIdx;
+
+        public IPlayer Player;
     }
 }

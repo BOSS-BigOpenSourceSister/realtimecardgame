@@ -1,20 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Gameplay.Behaviours;
 
-public class ManaManager : MonoBehaviour
+
+public class ManaManager
 {
-    public int mana = 0;
-    public int manaMaxValue = 12;
+    public static int manaMaxValue = 12;
+    public int mana = manaMaxValue;
     public float timeRemaining = 10;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
+    public void UseCard(ManaBehaviour manaBehaviour) {
+        mana -= manaBehaviour.CardCost;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddMana()
     {
         if (timeRemaining > 0)
         {
@@ -26,7 +24,7 @@ public class ManaManager : MonoBehaviour
             if (mana < manaMaxValue)
             {
                 mana += 1;
-                Debug.Log(mana);
+                Debug.Log("Update Mana: " + mana);
             }
         }
     }

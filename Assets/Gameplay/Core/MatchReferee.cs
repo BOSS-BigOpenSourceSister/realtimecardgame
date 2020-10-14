@@ -34,9 +34,9 @@ namespace Gameplay.Core
             castleRed.OnDie += OnCastleDied;
         }
 
-        public void OnPlayerUsedCard(CardType card, Team team, int laneIdx)
+        public void OnPlayerUsedCard(CardType card, Team team, int laneIdx, IPlayer player)
         {
-            var deployCardAction = GameActionFactory.CreateDeployCardAction(card, team, laneIdx);
+            var deployCardAction = GameActionFactory.CreateDeployCardAction(card, team, laneIdx, player);
             ActionsQueue.ScheduleAction(deployCardAction);
         }
 

@@ -12,7 +12,7 @@ namespace Gameplay.Core.Actions
             Deployer = deployer;
         }
 
-        public DeployCardAction CreateDeployCardAction(CardType cardType, Team team, int laneIdx)
+        public DeployCardAction CreateDeployCardAction(CardType cardType, Team team, int laneIdx, IPlayer player)
         {
             return CreateGameAction<DeployCardAction, DeployCardActionData>(new DeployCardActionData
             {
@@ -20,6 +20,7 @@ namespace Gameplay.Core.Actions
                 CardType = cardType,
                 Team = team,
                 LaneIdx = laneIdx,
+                Player = player,
             });
         }
 

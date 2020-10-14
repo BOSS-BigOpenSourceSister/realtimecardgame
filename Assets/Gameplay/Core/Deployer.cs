@@ -23,7 +23,7 @@ namespace Gameplay.Core
             GameplayHUD = gameplayHUD;
         }
 
-        public Entity DeployCard(CardType cardType, Team team, int laneIdx)
+        public Entity DeployCard(CardType cardType, Team team, int laneIdx, IPlayer player)
         {
             var card = GameObjectFactory.CreateCard(cardType, team);
 
@@ -46,9 +46,11 @@ namespace Gameplay.Core
                 }
             }
 
-            if (manaBehaviour != null)
+            if (manaBehaviour != null )
             {
-                Debug.Log(manaBehaviour.CardManaValue);
+                Debug.Log("Players Mana: " + player.Mana.mana);
+                player.Mana.UseCard(manaBehaviour);
+                Debug.Log("Cards Mana: " + manaBehaviour.CardCost);
             }
 
             return card;
