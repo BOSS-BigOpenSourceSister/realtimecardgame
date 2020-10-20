@@ -4,25 +4,52 @@ using System.Collections.Generic;
 using Gameplay.Behaviours.Interfaces;
 using UnityEngine;
 
-public class ProjectileAttackBehaviour : IAttacker
+namespace Gameplay.Behaviours
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ProjectileAttackBehaviour : MonoBehaviour, IAttacker
     {
-        [SerializeField] GameObject Projectile;
+        //Deixando visivel no Unity para linkar com o prefab flecha e dizer a posição que a flecha deverá ser instanciada
+        [SerializeField] GameObject projectile;
+        [SerializeField] Transform positionProjectile; //Posição que meu objeto será instanciado
+        private GameObject _tempProjectile;
 
-    }
-
-    void Awake()
-    {
+        private Rigidbody _rigidbody;
+        // Força com que o Arco será lançado
+        public float forceArrow = 10f;
+        public float speed = 2;
         
-        Projectile.Add((GameObject)Instantiate(Projectile, Projectile.transform.position, Projectile.transform.rotation));
+        //Quando começar
+        private void Awake()
+        {
+            Instantiated();
+            _rigidbody = GetComponent<Rigidbody>();
+        }
 
-    }
+        //Se o personagem estiver na posição de ataque, instanciar o projétil!
 
+        
+        //Método de instanciar o projétil
+        public void Instantiated()
+        {
+            _tempProjectile =
+                Instantiate(projectile, positionProjectile.position, Quaternion.identity);
+        }
+        
+        //Método para lançar o projétil
+        public void LaunchProjectile()
+        {
+            /* Tem que colocar true pra gravidade e false pra kinematic para a flecha ter gravidade e ir caindo quando
+            lançada */
+            _rigidbody.isKinematic = false;
+            _rigidbody.useGravity = true;
+            //Faz com que a flecha se mova pra frente
+            _rigidbody.AddForce(forceArrow*speed*Vector3.forward);
+        }
 
-    public void Attack(IDamageable target)
-    {
-        throw new NotImplementedException();
+        public void Attack(IDamageable target)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
