@@ -56,7 +56,7 @@ namespace Gameplay.Behaviours
 
         void Update()
         {
-            transform.Translate(translation: _velocity * Time.deltaTime);
+            transform.Translate(translation: _velocity * Time.deltaTime, Space.World);
         }
 
         void Move()
