@@ -7,11 +7,14 @@ using UnityEngine.Assertions;
 
 namespace Gameplay.Behaviours
 {
+    public delegate void AttackAction();
     public class AttackBehaviour : BaseBehaviour
     {
+        public event AttackAction onAttack;
+        
         [SerializeField] int damage = 10;
 
-        const int CooldownInSeconds = 1;
+        [SerializeField] float cooldownInSeconds = 1;
 
         List<IAttacker> _attackers;
 
@@ -60,10 +63,11 @@ namespace Gameplay.Behaviours
             }
 
             _attackTimer += Time.deltaTime;
-            if (_attackTimer > CooldownInSeconds)
+            if (_attackTimer > cooldownInSeconds)
             {
                 Attack();
                 _attackTimer = 0f;
+                onAttack?.Invoke();
             }
         }
 

@@ -53,8 +53,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.5053306, y: 1.4, z: 1}
-  m_Center: {x: 1.7526658, y: 0.7, z: 0}
+  m_Size: {x: 4.5053306, y: 0.676052, z: 1}
+  m_Center: {x: 1.7526658, y: 0.338026, z: 0}
 --- !u!54 &4580030627645663219
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  cooldownInSeconds: 2
 --- !u!114 &8717663169676086175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,11 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cab80d52ad94cf9b1b18046492f487c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 8231955238623955331, guid: d8bb7b9390d35a479b3efedd6f05814a,
+  projectile: {fileID: -6205003288792293298, guid: d8bb7b9390d35a479b3efedd6f05814a,
     type: 3}
   positionProjectile: {fileID: 5325278724823053748}
-  forceArrow: 0
-  speed: 2
 --- !u!114 &6068685361154916942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,13 +201,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9023149328497396012}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8802363147870601316}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &5745724509577208853
 PrefabInstance:
   m_ObjectHideFlags: 0

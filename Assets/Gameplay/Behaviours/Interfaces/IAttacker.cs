@@ -1,4 +1,6 @@
-﻿namespace Gameplay.Behaviours.Interfaces
+﻿using System;
+
+namespace Gameplay.Behaviours.Interfaces
 {
     public interface IAttacker
     {

@@ -5,22 +5,20 @@ namespace Gameplay.Behaviours
 {
     public class ProjectileBehaviour : BaseBehaviour
     {
-    //     // [SerializeField] GameObject projectile;
-    //     public Rigidbody rigidbody;
-    //
-    //     private void Awake()
-    //     {
-    //         rigidbody = GetComponent<Rigidbody>();
-    //     }
-    //
-    //     //Quando bater com o castelo a flechar ficar
-    //     private void OnCollisionEnter(Collision other)
-    //     {   
-    //         // Flecha passa a ter velocidade zero
-    //         rigidbody.velocity = Vector3.zero;
-    //         // Para poder ficar para no lugar sem cair
-    //         rigidbody.useGravity = false;
-    //     }
-    //
+        AttackBehaviour _attack;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _attack = GetComponent<AttackBehaviour>();
+            _attack.onAttack += RemoveArrow;
+        }
+        
+        void RemoveArrow()
+        {
+            _attack.onAttack -= RemoveArrow;
+            Entity.Remove();
+        }
+
     }
 }
