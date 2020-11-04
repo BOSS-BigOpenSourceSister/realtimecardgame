@@ -36,7 +36,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472a7dd3638f546df841eb9501cf6626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
   cooldownInSeconds: 0
 --- !u!114 &4129551441378557819
 MonoBehaviour:
@@ -51,6 +50,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+--- !u!114 &95580010950672106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8231955238623955331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126599653ca31436694cd0f9df876a0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1001 &5082747655303012072
 PrefabInstance:
   m_ObjectHideFlags: 0

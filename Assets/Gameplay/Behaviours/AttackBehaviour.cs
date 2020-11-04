@@ -11,8 +11,6 @@ namespace Gameplay.Behaviours
     public class AttackBehaviour : BaseBehaviour
     {
         public event AttackAction onAttack;
-        
-        [SerializeField] int damage = 10;
 
         [SerializeField] float cooldownInSeconds = 1;
 
@@ -74,7 +72,6 @@ namespace Gameplay.Behaviours
         void Attack()
         {
             Assert.IsTrue(HasValidTarget, message: "Attack should only be called with a valid target");
-            CurrentTarget.ScheduleDamage(damage);
             _attackers.ForEach(action: attacker => attacker.Attack(CurrentTarget));
         }
 
