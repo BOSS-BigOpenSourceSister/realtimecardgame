@@ -4,5 +4,7 @@
     {
         Warrior,
         MultiWarrior,
+        Ranged,
+        
     }
 }

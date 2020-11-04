@@ -49,7 +49,7 @@ namespace Gameplay.Core
 
             while (cards.Count < PlayerDeck.DeckSize)
             {
-                cards.Add(CardType.MultiWarrior);
+                cards.Add(CardType.Ranged);
             }
             return new PlayerDeck(cards);
         }
