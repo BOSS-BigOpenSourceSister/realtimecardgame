@@ -4,5 +4,6 @@
     {
         Warrior,
         MultiWarrior,
+        SlowSpell,
     }
 }

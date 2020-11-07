@@ -13,7 +13,8 @@ namespace Gameplay.Behaviours
             Right,
         }
 
-        [SerializeField] int speed = 1;
+        [SerializeField] float speed = 1f;
+
 
         Direction _direction;
         ColliderBehaviour _collider;
@@ -34,7 +35,7 @@ namespace Gameplay.Behaviours
 
         public bool IsMoving => _velocity.magnitude > 0f;
 
-        public int Speed => speed;
+        public float Speed => speed;
 
         protected override void Awake()
         {
@@ -57,6 +58,7 @@ namespace Gameplay.Behaviours
         void Update()
         {
             transform.Translate(translation: _velocity * Time.deltaTime);
+            Debug.Log(speed);
         }
 
         void Move()
@@ -93,6 +95,11 @@ namespace Gameplay.Behaviours
         void OnUpdateTeam(Team team)
         {
             _direction = _teamDirections[team];
+        }
+
+        public void ChangeSpeed(float newSpeed){
+            speed = newSpeed;
+            Debug.Log("velocidade = "+ newSpeed);        
         }
     }
 }
