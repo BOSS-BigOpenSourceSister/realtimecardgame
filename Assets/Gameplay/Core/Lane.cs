@@ -8,7 +8,6 @@ namespace Gameplay.Core
 {
     public class Lane : MonoBehaviour
     {
-        [SerializeField] Collider collider;
         [SerializeField] Transform cornerLeft;
         [SerializeField] Transform cornerRight;
 
@@ -24,8 +23,6 @@ namespace Gameplay.Core
         List<MovementBehaviour> GetObjectsFromTeam(Team team) =>
             LaneObjects.GetValueOrDefault(team, new List<MovementBehaviour>());
 
-        public Collider Collider => collider;
-
         public void AddEntity(Entity entity, Team team)
         {
             entity.transform.SetParent(transform);
@@ -33,7 +30,11 @@ namespace Gameplay.Core
             entity.transform.position = GetCorner(team).position;
             entity.OnRemoved += OnRemovedEntity;
             var teamObjects = GetObjectsFromTeam(team);
-            teamObjects.Add(entity.GetComponent<MovementBehaviour>());
+            var movement = entity.GetComponent<MovementBehaviour>();
+            if (movement != null)
+            {
+                teamObjects.Add(movement);
+            }
         }
 
         void Update()
