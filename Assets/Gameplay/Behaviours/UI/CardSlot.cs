@@ -28,7 +28,6 @@ namespace Gameplay.Behaviours.UI
             {
                 return;
             }
-            Debug.Log("REMOVE CARD!");
             rect.DestroyChildren();
             IsEmpty = true;
         }

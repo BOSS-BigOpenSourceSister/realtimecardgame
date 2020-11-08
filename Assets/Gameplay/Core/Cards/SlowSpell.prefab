@@ -25,6 +25,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ea2747773274390816a649b66f1466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 0.5
   areaOfEffect: {fileID: 1626535042022566821}
 --- !u!114 &5610767750448019250
 MonoBehaviour:
@@ -36,6 +37,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4bdc1686e08b846a487d598f5c3d4cb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4767773924120441549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3274150517216157666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09ac35a770d4ff45a4fc66b87e549bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &742524324941332276
@@ -64,6 +77,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.x
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638452507755586567, guid: 908f2cc533a2d4fa2be3e0e252f352e1,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6535682915903532396, guid: 908f2cc533a2d4fa2be3e0e252f352e1,
         type: 3}

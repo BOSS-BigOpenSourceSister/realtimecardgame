@@ -55,7 +55,6 @@ namespace Gameplay.Behaviours.UI
 
         public void OnCardDealt(CardType card, Team team)
         {
-            Debug.Log("[HUD] ON DEALT CARD!!!!!!!!!!!!");
             if (team != Team.Home)
             {
                 return;
@@ -64,7 +63,6 @@ namespace Gameplay.Behaviours.UI
             for (var i = 0; i < CardSlots.Count; ++i)
             {
                 var slot = CardSlots[i];
-                Debug.Log($"Add card? {slot.IsEmpty}");
                 if (!slot.IsEmpty)
                 {
                     continue;

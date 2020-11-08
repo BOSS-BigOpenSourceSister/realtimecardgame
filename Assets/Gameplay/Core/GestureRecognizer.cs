@@ -129,7 +129,6 @@ namespace Gameplay.Core
 
         void ProcessTouchMoved(Vector2 position, float deltaTime)
         {
-            Debug.Log($"PROCESS TOUCH MOVED! {processingState.ToString()}");
             if (processingState != ProcessingState.Idle)
             {
                 UpdateStateOnTouchMoved(position);

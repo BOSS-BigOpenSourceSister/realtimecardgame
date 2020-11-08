@@ -28,15 +28,23 @@ namespace Gameplay.Behaviours
             }
         }
 
-        void OnCollisionEnter(Collision collision)
+        void OnCollisionEnter(Collision collision) => OnEnter(collision.collider);
+
+        void OnCollisionExit(Collision collision) => OnExit(collision.collider);
+
+        void OnTriggerEnter(Collider other) => OnEnter(other);
+
+        void OnTriggerExit(Collider other) => OnExit(other);
+
+        void OnEnter(Collider c)
         {
-            var collidingObject = collision.collider.gameObject;
+            var collidingObject = c.gameObject;
             AddObject(collidingObject);
         }
 
-        void OnCollisionExit(Collision collision)
+        void OnExit(Collider c)
         {
-            var collidingObject = collision.collider.gameObject;
+            var collidingObject = c.gameObject;
             RemoveObject(collidingObject);
         }
 

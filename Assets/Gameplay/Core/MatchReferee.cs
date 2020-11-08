@@ -19,7 +19,6 @@ namespace Gameplay.Core
 
         void OnCastleDied(IDamageable damageable)
         {
-            Debug.Log("A PARTIDA ACABOU!");
             damageable.OnDie -= OnCastleDied;
             OnGameOver?.Invoke();
         }

@@ -23,7 +23,6 @@ namespace Gameplay.Core
             var deck = player.Deck;
             var card = BuyCard(deck);
             player.Hand.AddCard(card);
-            Debug.Log("ON DEALT CARD!!!!!!!!!!!!");
             OnDealtCard?.Invoke(card, player.Team);
         }
 

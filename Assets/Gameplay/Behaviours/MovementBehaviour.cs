@@ -58,7 +58,6 @@ namespace Gameplay.Behaviours
         void Update()
         {
             transform.Translate(translation: _velocity * Time.deltaTime);
-            Debug.Log(speed);
         }
 
         void Move()
@@ -74,8 +73,7 @@ namespace Gameplay.Behaviours
 
         void OnAddCollider(GameObject _)
         {
-            var myTeam = Entity.Team;
-            var opponents = _collider.GetCollidingObjects(myTeam.Opposite());
+            var opponents = GetCollidingEnemies();
             if (opponents.Any())
             {
                 Stop();
@@ -84,8 +82,7 @@ namespace Gameplay.Behaviours
 
         void OnRemoveCollider(GameObject target)
         {
-            var myTeam = Entity.Team;
-            var opponents = _collider.GetCollidingObjects(myTeam.Opposite());
+            var opponents = GetCollidingEnemies();
             if (opponents.Count == 0)
             {
                 Move();
@@ -99,7 +96,26 @@ namespace Gameplay.Behaviours
 
         public void ChangeSpeed(float newSpeed){
             speed = newSpeed;
-            Debug.Log("velocidade = "+ newSpeed);        
+            Move();
+        }
+
+        List<Entity> GetCollidingEnemies()
+        {
+            var myTeam = Entity.Team;
+            var opponents = _collider.GetCollidingObjects(myTeam.Opposite());
+
+            bool IsValidOpponent(Entity opponent)
+            {
+                var c = opponent.GetComponent<Collider>();
+                if (c.isTrigger)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
+            return opponents.Where(IsValidOpponent).ToList();
         }
     }
 }

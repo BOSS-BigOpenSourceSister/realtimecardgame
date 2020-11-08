@@ -10,6 +10,7 @@ namespace Gameplay.Behaviours
     {
         public void ApplySpell(Entity target){
             var sc = target.gameObject.AddComponent<SlowEffectBehaviour>();
+            Debug.Log($"Add slow effect behaviour to : {target.gameObject.name}");
         }
     }
 }

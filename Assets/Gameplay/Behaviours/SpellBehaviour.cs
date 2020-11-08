@@ -7,10 +7,13 @@ using UnityEngine;
 namespace Gameplay.Behaviours
 {
     public class SpellBehaviour : BaseBehaviour
-    {
+    {   
+        [SerializeField] float delay = 0.5f;
         [SerializeField] AreaOfEffectBehaviour areaOfEffect;
 
         List<ISpell> _spells;
+
+        float _timer;
 
         protected override void Awake()
         {
@@ -18,10 +21,16 @@ namespace Gameplay.Behaviours
             _spells = GetComponents<ISpell>().ToList();
         }
 
-        void Start()
+        bool _executed;
+
+        void Update()
         {
-            Debug.Log("Começou");
-            ExecuteSpell();
+            _timer += Time.deltaTime;
+            if (_timer >= delay && !_executed)
+            {
+                ExecuteSpell();
+                _executed = true;
+            }            
         }
 
         void ExecuteSpell()
@@ -30,7 +39,7 @@ namespace Gameplay.Behaviours
             var targets = GetTargets();
             foreach (var target in targets)
             {
-                Debug.Log("target");
+                Debug.Log($"target: {target.gameObject.name}");
                 foreach (var spell in _spells)
                 {
                     Debug.Log("apply spell");
