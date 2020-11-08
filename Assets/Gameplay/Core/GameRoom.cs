@@ -48,6 +48,7 @@ namespace Gameplay.Core
             Dealer.DealInitialCards(VisitorPlayer);
 
             matchReferee.Setup(gameActionFactory, players: new []{HomePlayer, VisitorPlayer}, castleBlue, castleRed);
+            matchReferee.OnPlayerUsedCard(CardType.Warrior, VisitorPlayer.Team, 0);
         }
 
         void Awake() => AddObservers();

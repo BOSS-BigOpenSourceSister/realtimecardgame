@@ -18,6 +18,9 @@ namespace Gameplay.Behaviours
         {
             base.Awake();
             movement = GetComponent<MovementBehaviour>();
+            if(movement == null){
+                return;
+            }
             var newSpeed = movement.Speed * slowFactor;
             movement.ChangeSpeed(newSpeed);
         }

@@ -18,7 +18,9 @@ namespace Gameplay.Behaviours
 
         public List<Entity> GetTargets()
         {
-            return _collider.GetCollidingObjects(targetTeam);
-        }
+            var x = _collider.GetCollidingObjects(targetTeam);
+            Debug.Log($"get target {x.Count} {targetTeam}");
+            return x;
+        } 
     }
 }

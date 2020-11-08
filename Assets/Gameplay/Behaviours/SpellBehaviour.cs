@@ -20,16 +20,20 @@ namespace Gameplay.Behaviours
 
         void Start()
         {
+            Debug.Log("Começou");
             ExecuteSpell();
         }
 
         void ExecuteSpell()
         {
+            Debug.Log("blabla");
             var targets = GetTargets();
             foreach (var target in targets)
             {
+                Debug.Log("target");
                 foreach (var spell in _spells)
                 {
+                    Debug.Log("apply spell");
                     spell.ApplySpell(target);
                 }
             }
